@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  v-modelディレクティブについて：
+  双方向データバインディングを作成するために用いる。
+
+  データバインディング：
+  データと対象が結合される
+  つまり、HTMLにある物、対象とscriptにあるデータを一塊にすること。
+  記述されている内容で言うと、{{message}}とdata:{message:'こんにちは'}（モデルとも言う）が繋がっており、その状態のこと。
+
+  双方向：
+  通常モデルと対象は片方向にしか影響し合わない。
+  例えば、スクリプトファイルのmessageを「こんにちは」から「こんばんは」に変えることはできても、{{message}}を{{こんばんは}}と
+  変えてもモデルには影響がでない。
+  それを対象の内容を変えるとモデルの内容にも影響を与えることができる関係性を双方向と言う。
+
+-->
+  <div id="app">
+    <input type="text" v-model="message">
+    <h1>
+      {{message}}
+    </h1>
+
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'こんにちは'
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

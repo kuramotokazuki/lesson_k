@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+    watch（ウォッチャ）とは:
+    特定のデータが変わった時に、処理を実行したい時に使う。
+
+    computedとの違い：
+    基本はwatchは使わない。
+    computedで庇いきれない場合に使う。
+
+    庇いきれない場合：
+    あくまでもプロパティなので、テンプレート内に対象のメソッド({{}}）の記述が無くなると処理実行されない。
+    非同期で処理をしたい場合
+
+-->
+  <div id="app">
+    <p>{{ counter }}</p>
+    <button @click="counter += 1">+1</button>
+    <p>{{ lessThanThree }}</p>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0,
+      },
+      computed: {
+        lessThanThree: function () {
+          return this.counter > 3 ? '３より上' : '３より下'
+        }
+      },
+      watch: {
+        counter: function () {
+          //watchでは非同期処理になるので、thisが使えない。代わりにconst（定数）を使う
+          var vm = this;
+          setTimeout(function () {
+            vm.counter = 0
+          }, 3000)
+
+        }
+      }
+
+
+    });
+  </script>
+
+</body>
+
+</html>

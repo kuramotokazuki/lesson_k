@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  ディレクティブとは：vueにおける特別な属性のこと　例　v-から始まるvue専用の属性
+
+　
+-->
+  <div id="app">
+    <p>
+      {{ message }}
+    </p>
+    <a v-text="message"></a>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'HelloWorld!',
+      }
+    });
+  </script>
+
+</body>
+
+</html>

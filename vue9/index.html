@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  v-on:DOMに対してアクションを起こした場合に、どう動作するか指示するディレクティブ。また関数（methods）を使うことも可能。
+  インスタンスに対して、動作内容を書くほうがよい
+
+  イベントオブジェクトの取得方法について:
+    funcgtion(event)というふうに引数にeventと記述することで情報を取得する。
+    eventではない単語を入れるよりはevetと記述するのが慣例となっている。
+
+  イベントオブジェクトとは：イベントが入ったオブジェクト。マウスのあらゆる動作に対して特定の処理をさせるための命令（イベントハンドラーまたはイベントリスナー）
+  が実行された関数の引数を受け取ることができるオブジェクトのこと。そのオブジェクトから情報（プロパティ）を手に入れ、そのイベントを制御するメソッドを
+  活用することができる。
+
+　
+-->
+  <div id="app">
+    <p>現在{{ number }}回クリックされています。</p>
+    <button v-on:click="countUp">カウントアップ</button>
+    <p v-on:mousemove="changeMousePosition">マウスを載せて</p>
+    <p>X:{{x}},Y{{y}}</p>
+
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        countUp: function () {
+          this.number += 1
+        },
+        changeMousePosition: function (event) {
+          this.x = event.clientX;
+          this.y = event.clientY;
+
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

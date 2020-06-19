@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  v-onを動的に制御する方法：
+  dataにキーとプロパティを記述し、ディレクティブの後に[]をつけて、[]内にキーを入れることでプロパティの値が返ってくる
+  
+  省略方：
+  v-onの代わりに＠を使うと省略される。
+
+
+
+
+-->
+  <div id="app">
+    <p>現在{{ number }}回クリックされています。</p>
+    <button [event]="countUp">カウントアップ</button>
+
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        event: 'click'
+      },
+      methods: {
+        countUp: function () {
+          this.number += 1;
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

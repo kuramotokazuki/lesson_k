@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  コンピューテッドプロパティ（算出プロパティ）：
+  リアクティブシステムを最大限利用するためのもの
+  動的なプロパティを使う物
+  vue.jsのデータではプレーン値である動的なものを表現できず、初期値しか扱えないのでその時のために使うのがコンピューテッドプロパティである
+
+  なので、データとは違い関数を使って動的表現をする記述が必要。
+  methodsを使っても同じ挙動ができる
+
+  computedは、
+  methodsは、
+  要は、computedはキャッシュされて、methodsはキャッシュされない。
+  使い分けは、キャッシュが効果的ならcomputed、キャッシュ必要ないもしくはよくわからんって時にmethodsを使う。
+  
+  
+  methodsとcomputedの違い：
+    computed:
+      ぷろぱてぃ（対象がもつ属性や状態、設定などの情報のこと）である
+      依存関係に基づいてキャッシュされる。
+      getter&setter両方の定義ができる。
+      {{ hoge }}と言う記述。（）がいらない。
+      キャッシュがのこる
+      {{}}を使って複雑なプロパティ（動的なプロパティ）を使うときはcomputedを使う
+      ページを更新しても入力値（参照先のデータ）が変わらなければ、function以下の関数計算を処理実行しない。
+
+
+    methods：
+      メソッド（方式、関数のこと）である
+      テンプレートの中身が少しでも変わったら再描画（再読み込み？）されるたびにfunction以下の関数計算が処理実行される。
+      {{ hoge() }}と言う記述。（）がいる。
+      キャッシュが残らない。
+
+      ※キャッシュ：よく使う直近のデータを保存しておく場所。たくさん保管されていると読み込みが遅くなったりする。
+
+    使い分けの例として、読み込んだタイミングの現時刻を表示するプログラミングを構築した場合
+    computed→キャッシュが残っているのでいつアクセスしても同じ日時になってしまう。要はキャッシュに残っているデータを返している状態。
+    methods→キャッシュが残らないので、アクセスしたタイミングでの日時をちゃんと返してくれている。要は鶏みたいに直前のことを忘れてるので新鮮な情報を返してくれる状態
+
+  
+  よくわからなくなったら、参考にしたurlを熟読か質問する
+  （https://qiita.com/okerra/items/cda378436ed060e83a8c）
+  （https://udomomo.hatenablog.com/entry/2017/12/11/213904）
+
+-->
+  <div id="app">
+    <p>{{ counter }}</p>
+    <button @click="counter += 1">+1</button>
+    <p>{{ lessThanThreeComputed }}</p>
+    <p>{{ lessThanThreeMethods() }}</p>
+
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0,
+      },
+      computed: {
+        lessThanThreeComputed: function () {
+          return this.counter > 3 ? '３より上' : '３より下'
+        }
+      },
+      methods: {
+        lessThanThreeMethods: function () {
+          return this.counter > 3 ? '３より上' : '３より下'
+
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

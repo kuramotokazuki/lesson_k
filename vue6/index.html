@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  v-html:htmlとして反映させられるディレクティブ
+  ※クロスサイトスクリプティングという脆弱性がある。なので、使用する際はユーザーから提供されたコンテンツを表示するようにはしない。
+  クロスサイトスクリプティング：ブログなどユーザーの投稿内容を反映させるWebアプリケーションにおいて、脆弱性を利用した攻撃手法のこと
+  例を挙げるとユーザーから与えられたデータをそのままvーHTMLのデータとして出力するとなった場合、ブログなどで悪意のあるユーザーが記事
+  投稿する時にスクリプトタグなどを使ってクッキーを盗んだり、alertを使ったフィッシングサイトになったりいろんな悪意のある処理ができてしまう。
+
+
+　
+-->
+  <div id="app">
+    <div v-html="html">{{ html }}</div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        html: '<h1>h1dayo</h1>'
+
+
+      }
+    });
+  </script>
+
+</body>
+
+</html>

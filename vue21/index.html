@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  インラインスタイルのバインディングの配列構文について
+    オブジェクトに複数スタイルを当てたい時に使う
+-->
+  <div id="app">
+    <h1 :style="[styleObject, baseStyle]">Hello!</h1>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        styleObject: {
+          color: "red",
+          background: "blue"
+        },
+        baseStyle: {
+          fontSize: "60px"
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

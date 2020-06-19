@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  v-on:DOMに対してアクションを起こした場合に、どう動作するか指示するディレクティブ。また関数（methods）を使うことも可能。
+  インスタンスに対して、動作内容を書くほうがよい
+
+  イベント修飾子について：
+  よく使われるイベントを、インスタンス内でいちいち書くのではなく、ディレクティブに追記することで手間を省き、意味を補完すること。
+  まさにイベントを修飾することである。
+  .でつなげて使うことができる。
+  
+
+  stopPropagationとは：
+  propagation(伝播や普及、周りに影響を与えること)させないという意味の関数。
+  clickイベントなどで反応させたくない時に使う。
+  イベント修飾子：stop
+
+  preventDefaultとは：
+  preventdefault(既定を防ぐ)という意味で、タグで通常通りの反応をすることを止める時に使う。
+  例えば、aタグをクリックするとリンク先に飛ばされるが、preventDefaultを使うことでリンク先に飛ぶ挙動をさせないことができる。
+  イベント修飾子.prevent
+
+
+-->
+  <div id="app">
+    <p>現在{{ number }}回クリックされています。</p>
+    <button v-on:click="countUp(2)">カウントアップ</button>
+    <p v-on:mousemove=" changeMousePosition(3,$event)">マウスを載せて</p>
+    <span v-on:mousemove="noEvent">反応しないで（stop修飾子なし）</span>
+    <span v-on:mousemove.stop>反応しないで（stop修飾子あり）</span>
+    <a v-on:click="prevent" href="https://google.com">反応しないで（prevent修飾子なし）</a>
+    <a v-on:click.prevent href="https://google.com">反応しないで（prevent修飾子あり）</a>
+    <p>X:{{x}},Y{{y}}</p>
+
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        countUp: function (times) {
+          this.number += 1 * times;
+        },
+        changeMousePosition: function (dividNumber, event) {
+          this.x = event.clientX / dividNumber;
+          this.y = event.clientY / dividNumber;
+
+        },
+        noEvent: function (event) {
+          event.stopPropagation();
+        },
+        prevent: function (event) {
+          event.preventDefault();
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

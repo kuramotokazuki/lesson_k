@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  v-bind:引数を取り、動的に表現できるディレクティブ。記述の省略ができる（：）
+
+  
+  ※v-bind="{honyarara}":obbject形式で記述ができる。冗長性を抑えられる。
+  html
+    <a :href="urlTwitter" :id="number">Twitter</a>
+  script
+    urlTwitter: 'https://twitter.com',
+        number: 31,
+        attribute: 'href'
+
+
+  ※v-bind＝"hoge"と属性を記述し、インスタンス内でhoge:{href:'hogeurl'}などとしてさらにコンパクトに記述することができる。
+-->
+  <div id="app">
+    <a :[attribute]="url">Google</a>
+    <a v-bind="twitterObject">Twitter</a>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        url: 'https://google.com',
+
+        attribute: 'href',
+        twitterObject: {
+          href: 'https://twitter.com',
+          id: 31
+        }
+      }
+    });
+    //
+  </script>
+
+</body>
+
+</html>

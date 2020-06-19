@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vueの基本
+ {{}}：jsファイルでvueで指定したデータを使用する時に使う
+ v-on：vueが用意している特別な属性
+ ：click：DOMイベントの一種。その後に「＝ホニャララ」と書いて、実行する内容の名前をいれる。クラス名やID名みたいなもの
+ ※DOMとは：DocumentObjectModelの略で、ドキュメントをものとして扱うモデルという意味。要はIDやclassを一つのものとして扱うこと。DOM操作というのはその「（idやclassなどの）物」を操作するよという意味
+ 
+-->
+  <div id="app">
+    <p>
+      {{message}}
+    </p>
+    <button v-on:click="reverseMessage">
+      メッセージを反転
+    </button>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'HelloWorld!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

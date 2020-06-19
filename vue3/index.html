@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue
+ テンプレート構文：new Vue({hoge})から始まる構文。vueにおいて心臓部分に当たる。
+ el:エレメンタル（要素）プロパティといい、クラスやidを指定して扱うためのプロパティ
+ {{}}:二重カッコ内ではJavascrptの構文がそのまま使える特性を持っている。三項演算子も使える。
+ ※三項演算子とは：if~elseを一文で書く時に使う演算子。書き方は【条件式　? 正の場合の処理:誤の場合の処理】（参考URL:https://wa3.i-3-i.info/word11653.html）
+ methods:methodsの使用が可能。単一の式しか使えないことに注意。var等の指定など。
+ this:本来はvueインスタンス内で他のデータにアクセスする際に必要な記号。インスタンス内で自分のインスタンス内にアクセスする際に必要になる。
+　
+-->
+  <div id="app">
+    <p>
+      {{ sayHi() }}
+    </p>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'HelloWorld!',
+      },
+      methods: {
+        sayHi: function () {
+          return this.message;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

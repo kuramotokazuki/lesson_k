@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  ディレクティブとは：vueにおける特別な属性のこと　例　v-から始まるvue専用の属性
+  v-once:描画を一度だけ行うディレクティブ
+
+　
+-->
+  <div id="app">
+    <p v-once>
+      {{ message }}
+    </p>
+    <p>
+      {{ sayHi() }}
+    </p>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'HelloWorld!',
+      },
+      methods: {
+        sayHi() {
+          this.message = "Hello VueJS"
+          return 'hi'
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

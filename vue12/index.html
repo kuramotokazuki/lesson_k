@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  キー修飾子について:キーボードに対するDOMイベント（→や↑などのキーボード操作）
+  enterなどの特定のキーボード操作に反応させることができる。
+
+
+-->
+  <div id="app">
+    <p>現在{{ number }}回クリックされています。</p>
+    <button v-on:click="countUp(2)">カウントアップ</button>
+    <p v-on:mousemove=" changeMousePosition(3,$event)">マウスを載せて</p>
+    <span v-on:mousemove.stop.prevent>反応しないで</span>
+    <a v-on:click.prevent.stop href="https://google.com">Google</a>
+    <p>X:{{x}},Y{{y}}</p>
+    <input type="text" 　v-on:keyup.enter.space="myAlert">
+
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        countUp: function (times) {
+          this.number += 1 * times;
+        },
+        changeMousePosition: function (dividNumber, event) {
+          this.x = event.clientX / dividNumber;
+          this.y = event.clientY / dividNumber;
+        },
+        myAlert() {
+          alert('alert');
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>

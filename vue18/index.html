@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  クラスのバインディングについて
+    v-bindを使って、クラス名を命名し、動的にクラス名を変更させることができる。
+    真偽値を与えて、trueなら〇〇、falseなら□□のように、変化させるような時に使う。
+
+-->
+  <div id="app">
+    <h1 :class="classObject">Hello!</h1>
+    <button @click="isActive = !isActive ">切替</button>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isActive: true
+      },
+      computed: {
+        classObject: function () {
+          return {
+            red: this.isActive,
+            'bg-blue': !this.isActive
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

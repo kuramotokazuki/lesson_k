@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <!--
+  vue.jsにおいて大切なディレクティブについて
+  v-on:DOMに対してアクションを起こした場合に、どう動作するか指示するディレクティブ。また関数（methods）を使うことも可能。
+  インスタンスに対して、動作内容を書くほうがよい
+
+  引数について：
+  定めた関数に対して(hogehoge)などと記述することで引数hogehogeをインスタンス内から値を引っ張ってきて使うことができる。
+  例：　<p v-on:click="hoge(引数A）">
+
+      data: {
+        hogenum: 1
+      }
+      hoge:function(引数A){
+        this.hogenum += 1 + 引数A；
+      }
+
+      とした場合、タグ内の（引数A）を任意の数字に変えた時に、function（引数A）とその中の引数Aが任意の数字に引っ張り込んで変わる。
+      逆も然りで、メソッド内の引数を変えると、ダグ内の引数が変わる。
+      弄った感じだと、メソッド内の関数に関連する数字を変えるように記述した方が使い勝手が良さそう。
+  ※引数どうしで計算させる場合は、「＄」を引数名の頭に入れる。今回だと$eventという感じ。またカッコ内の引数位置は任意で決められる。
+  ただし、必ずHTMLタグ内とscriptタグ内での位置を揃える必要がある。
+
+
+　
+-->
+  <div id="app">
+    <p>現在{{ number }}回クリックされています。</p>
+    <button v-on:click="countUp(2)">カウントアップ</button>
+    <p v-on:mousemove=" changeMousePosition(3,$event)">マウスを載せて</p>
+    <p>X:{{x}},Y{{y}}</p>
+
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        countUp: function (times) {
+          this.number += 1 * times;
+        },
+        changeMousePosition: function (dividNumber, event) {
+          this.x = event.clientX / dividNumber;
+          this.y = event.clientY / dividNumber;
+
+        }
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
